@@ -1,0 +1,13 @@
+<html preload>
+    <%-data%>
+<!-- <script src="linkrestore.js"></script> -->
+<script>
+    var p=document.querySelectorAll("a");
+p.forEach(link=>{
+    if(link.href.includes("localhost")){
+        var part=link.href.slice(21);
+        link.href=JSON.parse('<%-JSON.stringify(url)%>')+part;
+    }
+})
+</script>
+</html>

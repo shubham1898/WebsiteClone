@@ -1,0 +1,24 @@
+body{
+    width:100%;
+    height: 100%;
+}
+form{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    justify-self: normal;
+    align-items: center;
+}
+input{
+    width:50vw;
+}
+p{
+    background-color: lightskyblue;
+}
+h3{
+    font-weight:500 ;
+}
+.appear{
+    display:grid;
+    grid-template-rows: 3fr 2fr 2fr;
+}
