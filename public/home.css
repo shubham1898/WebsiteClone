@@ -22,11 +22,12 @@ h3,h4{
 h4{
     margin-top:30vh;
     background-color: lightyellow;
+    width:fit-content;
 }
 
 .appear{
     display:grid;
-    grid-template-rows: 5fr 3fr 2.5fr 1fr;
+    grid-template-rows: 5fr 3fr 2.5fr;
 }
 .footer{
     margin-top: 30vh;
