@@ -26,5 +26,8 @@ h4{
 
 .appear{
     display:grid;
-    grid-template-rows: 3fr 2fr 2fr ;
+    grid-template-rows: 5fr 3fr 2.5fr 1fr;
+}
+.footer{
+    margin-top: 30vh;
 }
