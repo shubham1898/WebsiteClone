@@ -1,13 +1,3 @@
 <html preload>
     <%-data%>
-<!-- <script src="linkrestore.js"></script> -->
-<script>
-    var p=document.querySelectorAll("a");
-p.forEach(link=>{
-    if(link.href.includes("herokuapp")){
-        var part=link.href.slice(35);
-        link.href=JSON.parse('<%-JSON.stringify(url)%>')+part;
-    }
-})
-</script>
 </html>

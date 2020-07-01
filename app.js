@@ -10,6 +10,7 @@ app.use(express.static("public"));
 app.set('port',(process.env.PORT || 3000));
 
 var result={};
+var siteUrl="";
 // var globalresult={};
 
 app.get("/",(req,res)=>{
@@ -29,9 +30,9 @@ const fetchData=async siteUrl =>{
 
     }
 }
-const fetchDataax = async (siteUrl) => {
+const fetchDataax = async (Url) => {
             try {
-                result = await axios.get(siteUrl);
+                result = await axios.get(Url);
                var globalresult = result.data;
                 // console.log(globalresult);               //return file as object
                 // return cheerio.load(result.data);
@@ -46,32 +47,90 @@ const fetchDataax = async (siteUrl) => {
 
 app.post("/clone",async(req,res)=>{
     try{
-      var siteUrl=req.body.name;
-    //   var siteUrl='https://www.instagram.com/shubhamshrivastav1898/?__a=1'
-    //   var siteUrl='http://dummy.restapiexample.com/api/v1/employees'
-    //   var siteUrl='https://www.geeksforgeeks.org/java'
-    // var siteUrl="http://www.coomeet.com"
-    // var siteUrl="http://www.instagram.com"
-    // var siteUrl="https://stackoverflow.com/questions/16098397/pass-variables-to-javascript-in-expressjs"
-    // var siteUrl="https://www.india.gov.in"
+      siteUrl=req.body.name;
      var data= await fetchDataax(siteUrl);
     //  var data=JSON.stringify(data2)
       res.render('clonesites.ejs',{data:data,url:siteUrl});
     }catch(error){
         console.log(error);
     }
-})
-// app.post("/result",async(req,res)=>{
-//     var name=req.body.name;
-//     var siteUrl='https://www.instagram.com/' + name + '/?__a=1'
-//    
-//      await fetchData();
-//     var profilepicurl = globalresult.graphql.user.profile_pic_url;
-//       var  full_name = globalresult.graphql.user.full_name;
-//       var  bio = globalresult.graphql.user.biography;
-//       var  postcount = globalresult.graphql.user.edge_owner_to_timeline_media.count;
-//     res.render("result.ejs",{name:name,pic:profilepicurl,fullname:full_name,post:postcount,bio:bio});
-// });
+});
+
+app.get("/:id1/:id2/:id3/:id4/:id5/:id6",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var linkpart2= req.params.id2;
+   var linkpart3= req.params.id3;
+   var linkpart4= req.params.id4;
+   var linkpart5= req.params.id5;
+   var linkpart6= req.params.id6;
+   var link=siteUrl+"/"+linkpart1+"/"+linkpart2+"/"+linkpart3+"/"+linkpart4+"/"+linkpart5+"/"+linkpart6;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
+app.get("/:id1/:id2/:id3/:id4/:id5",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var linkpart2= req.params.id2;
+   var linkpart3= req.params.id3;
+   var linkpart4= req.params.id4;
+   var linkpart5= req.params.id5;
+   var link=siteUrl+"/"+linkpart1+"/"+linkpart2+"/"+linkpart3+"/"+linkpart4+"/"+linkpart5;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
+app.get("/:id1/:id2/:id3/:id4",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var linkpart2= req.params.id2;
+   var linkpart3= req.params.id3;
+   var linkpart4= req.params.id4;
+   var link=siteUrl+"/"+linkpart1+"/"+linkpart2+"/"+linkpart3+"/"+linkpart4;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
+app.get("/:id1/:id2/:id3",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var linkpart2= req.params.id2;
+   var linkpart3= req.params.id3;
+   var link=siteUrl+"/"+linkpart1+"/"+linkpart2+"/"+linkpart3;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
+app.get("/:id1/:id2",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var linkpart2= req.params.id2;
+   var link=siteUrl+"/"+linkpart1+"/"+linkpart2;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
+app.get("/:id1",async(req,res)=>{
+    try{
+   var linkpart1= req.params.id1;
+   var link=siteUrl+"/"+linkpart1;
+   var data=await fetchDataax(link);
+   res.render("clonesites.ejs",{data:data})
+    }catch(err){
+        console.log(err);
+    }
+});
 
 
 app.listen(app.get('port'),()=>{
